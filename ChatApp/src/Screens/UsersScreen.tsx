@@ -1,4 +1,11 @@
-import { View, Text, TouchableOpacity, FlatList, Image } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  FlatList,
+  Image,
+  TextInput,
+} from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { BackIcon } from '../uiAssets/icons';
 
@@ -21,7 +28,7 @@ const UserScreen = ({ navigation }: any) => {
           flexDirection: 'row',
           alignItems: 'center',
           paddingTop: insets.top + 16,
-          gap: 16,
+          gap: 10
         }}
       >
         <TouchableOpacity
@@ -31,7 +38,18 @@ const UserScreen = ({ navigation }: any) => {
           <BackIcon />
         </TouchableOpacity>
         <Text style={{ color: 'white', fontSize: 18, fontWeight: '600' }}>
-          Users
+          <TextInput
+            style={{
+              color: 'white',
+              backgroundColor: '#000',
+              width: '94%',
+              borderRadius: 10,
+              paddingHorizontal: 14,
+              paddingVertical: 8,
+            }}
+            placeholder="Search..."
+            placeholderTextColor="#A9A9A9"
+          />
         </Text>
       </View>
 
@@ -51,12 +69,9 @@ const UserScreen = ({ navigation }: any) => {
           >
             <View
               style={{
-                backgroundColor: '#1F1F1F',
                 height: 54,
                 width: 54,
                 borderRadius: 25,
-                justifyContent: 'center',
-                alignItems: 'center',
                 overflow: 'hidden',
               }}
             >
