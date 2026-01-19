@@ -62,7 +62,7 @@ const LoginScreen = ({navigation}:any) => {
               alignSelf: 'center',
               marginBottom: '5%',
             }}
-            onPress={() => navigation.navigate('chat')}
+            onPress={() => navigation.navigate('users')}
           >
             <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 16 }}>
               Login

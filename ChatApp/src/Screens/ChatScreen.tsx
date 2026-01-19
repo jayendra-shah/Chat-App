@@ -1,10 +1,10 @@
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { SendIcon } from '../uiAssets/icons';
+import { BackIcon, SendIcon } from '../uiAssets/icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useState } from 'react';
 import RenderMessages from '../Components/RenderMessages';
 
-const ChatScreen = () => {
+const ChatScreen = ({ navigation }:any) => {
   const [noMessage, setNoMessage] = useState(true);
   const insets = useSafeAreaInsets();
 
@@ -16,6 +16,22 @@ const ChatScreen = () => {
         paddingBottom: 8 + insets.bottom,
       }}
     >
+      <View
+        style={{
+          backgroundColor: '#1F1F1F',
+          paddingTop: insets.top + 16,
+          padding: 16,
+          flexDirection: 'row',
+          alignItems: 'center',
+        }}
+      >
+        <TouchableOpacity
+          style={{ padding: 3, borderRadius: 25, backgroundColor:'black' }}
+          onPress={() => navigation.goBack()}
+        >
+          <BackIcon/>
+        </TouchableOpacity>
+      </View>
       <View style={{ flex: 1 }}>
         {noMessage ? (
           <View

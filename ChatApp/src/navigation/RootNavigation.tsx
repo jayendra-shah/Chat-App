@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from '../Screens/AuthScreens/LoginScreen';
 import SignupScreen from '../Screens/AuthScreens/SignupScreen';
 import ChatScreen from '../Screens/ChatScreen';
+import UserScreen from '../Screens/UsersScreen';
 
 const RootStack = createNativeStackNavigator();
 
@@ -20,7 +21,16 @@ const RootNavigator = () => {
           component={SignupScreen}
           options={{ headerShown: false }}
         />
-        <RootStack.Screen name={'chat'} component={ChatScreen} options={{title:'Recevier Name'}} />
+        <RootStack.Screen
+          name={'users'}
+          component={UserScreen}
+          options={{ headerShown: false }}
+        />
+        <RootStack.Screen
+          name={'chat'}
+          component={ChatScreen}
+          options={{ headerShown: false }}
+        />
       </RootStack.Navigator>
     </NavigationContainer>
   );
