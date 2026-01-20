@@ -1,9 +1,8 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import LoginScreen from '../Screens/AuthScreens/LoginScreen';
-import SignupScreen from '../Screens/AuthScreens/SignupScreen';
 import ChatScreen from '../Screens/ChatScreen';
-import UserScreen from '../Screens/UsersScreen';
+import HomeScreen from '../Screens/HomeScreen';
+import AuthNavigation from './AuthNavigation';
 
 const RootStack = createNativeStackNavigator();
 
@@ -12,18 +11,13 @@ const RootNavigator = () => {
     <NavigationContainer>
       <RootStack.Navigator>
         <RootStack.Screen
-          name={'login'}
-          component={LoginScreen}
+          name={'auth'}
+          component={AuthNavigation}
           options={{ headerShown: false }}
         />
         <RootStack.Screen
-          name={'signup'}
-          component={SignupScreen}
-          options={{ headerShown: false }}
-        />
-        <RootStack.Screen
-          name={'users'}
-          component={UserScreen}
+          name={'home'}
+          component={HomeScreen}
           options={{ headerShown: false }}
         />
         <RootStack.Screen

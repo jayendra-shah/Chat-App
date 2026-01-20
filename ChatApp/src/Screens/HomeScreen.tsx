@@ -16,7 +16,7 @@ const users = [
   { id: '4', name: 'Riya', status: 'Online' },
 ];
 
-const UserScreen = ({ navigation }: any) => {
+const HomeScreen = ({ navigation }: any) => {
   const insets = useSafeAreaInsets();
 
   return (
@@ -28,12 +28,12 @@ const UserScreen = ({ navigation }: any) => {
           flexDirection: 'row',
           alignItems: 'center',
           paddingTop: insets.top + 16,
-          gap: 10
+          gap: 10,
         }}
       >
         <TouchableOpacity
           style={{ padding: 3, borderRadius: 25, backgroundColor: 'black' }}
-          onPress={() => navigation.goBack()}
+          onPress={() => navigation.replace('auth')}
         >
           <BackIcon />
         </TouchableOpacity>
@@ -100,4 +100,4 @@ const UserScreen = ({ navigation }: any) => {
   );
 };
 
-export default UserScreen;
+export default HomeScreen;
