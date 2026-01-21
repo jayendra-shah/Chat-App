@@ -1,26 +1,33 @@
 import {
   Alert,
-  Pressable,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
-import { useState } from 'react';
-import auth from '@react-native-firebase/auth';
-import {
-  CloseEyeIcon,
-  MailIcon,
-  OpenEyeIcon,
-  PasswordIcon,
-} from '../../uiAssets/icons';
+import { MailIcon } from '../../uiAssets/icons';
 import { AuthLayout } from '../../uiAssets/layouts';
+import auth from '@react-native-firebase/auth';
+import { useState } from 'react';
 
 const ForgotPasswordScreen = ({ navigation }: any) => {
-  
-  const [eyeOn, setEyeOn] = useState(false);
+  const [email, setEmail] = useState('');
 
+  const forgotPassword = async () => {
+    if (!email) {
+      Alert.alert('Error', 'Please enter your email');
+      return;
+    }
+
+    try {
+      await auth().sendPasswordResetEmail(email);
+      Alert.alert('Success', 'Password reset email has been sent');
+      navigation.navigate('login')
+    } catch (error: any) {
+      Alert.alert('Error', error.message);
+    }
+  };
 
   return (
     <AuthLayout>
@@ -41,6 +48,7 @@ const ForgotPasswordScreen = ({ navigation }: any) => {
             style={style.textInput}
             placeholder="Enter your email"
             placeholderTextColor="#9A9A9D"
+            onChangeText={setEmail}
           />
         </View>
       </View>
@@ -55,7 +63,7 @@ const ForgotPasswordScreen = ({ navigation }: any) => {
           alignSelf: 'center',
           elevation: 4,
         }}
-        // onPress={() => navigation.navigate('users')}
+        onPress={forgotPassword}
       >
         <Text style={{ color: 'white', fontWeight: '900', fontSize: 16 }}>
           Reset
