@@ -69,7 +69,7 @@ const ChatScreen = ({ navigation }:any) => {
         <TouchableOpacity
           onPress={() => setNoMessage(!noMessage)}
           style={{
-            backgroundColor: '#9112BC',
+            backgroundColor: '#4A6CF7',
             alignItems: 'center',
             justifyContent: 'center',
             borderRadius: 50,

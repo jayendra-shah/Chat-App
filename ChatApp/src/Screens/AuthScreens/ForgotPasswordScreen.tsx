@@ -17,24 +17,10 @@ import {
 } from '../../uiAssets/icons';
 import { AuthLayout } from '../../uiAssets/layouts';
 
-const LoginScreen = ({ navigation }: any) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const ForgotPasswordScreen = ({ navigation }: any) => {
+  
   const [eyeOn, setEyeOn] = useState(false);
 
-  const handleLogin = async () => {
-    if (!email || !password) {
-      Alert.alert('Error', 'Enter email and password');
-      return;
-    }
-
-    try {
-      await auth().signInWithEmailAndPassword(email, password);
-      navigation.replace('home');
-    } catch (error: any) {
-      Alert.alert('Login Error', error.message);
-    }
-  };
 
   return (
     <AuthLayout>
@@ -46,7 +32,7 @@ const LoginScreen = ({ navigation }: any) => {
           textAlign: 'center',
         }}
       >
-        Let’s Chat
+        Reset Password
       </Text>
       <View style={{ width: '92%', gap: 16 }}>
         <View style={style.textInputBox}>
@@ -55,35 +41,7 @@ const LoginScreen = ({ navigation }: any) => {
             style={style.textInput}
             placeholder="Enter your email"
             placeholderTextColor="#9A9A9D"
-            onChangeText={setEmail}
           />
-        </View>
-        <View>
-          <View style={style.textInputBox}>
-            <PasswordIcon />
-            <TextInput
-              style={style.textInput}
-              placeholder="Enter your password"
-              placeholderTextColor="#9A9A9D"
-              onChangeText={setPassword}
-              secureTextEntry={eyeOn}
-            />
-            <Pressable onPress={() => setEyeOn(!eyeOn)}>
-              {eyeOn ? <CloseEyeIcon /> : <OpenEyeIcon />}
-            </Pressable>
-          </View>
-          <Pressable style={{ marginTop: 4 }} onPress={() => navigation.navigate('forgotPassword')}>
-            <Text
-              style={{
-                textAlign: 'right',
-                color: '#fff',
-                fontWeight: '700',
-                textDecorationLine: 'underline',
-              }}
-            >
-              forgot password
-            </Text>
-          </Pressable>
         </View>
       </View>
 
@@ -98,10 +56,9 @@ const LoginScreen = ({ navigation }: any) => {
           elevation: 4,
         }}
         // onPress={() => navigation.navigate('users')}
-        onPress={handleLogin}
       >
         <Text style={{ color: 'white', fontWeight: '900', fontSize: 16 }}>
-          Log In
+          Reset
         </Text>
       </TouchableOpacity>
       <View
@@ -111,8 +68,8 @@ const LoginScreen = ({ navigation }: any) => {
           gap: 6,
         }}
       >
-        <Text style={{ color: '#A9A9A9' }}>Don't Have An Account? </Text>
-        <TouchableOpacity onPress={() => navigation.navigate('signup')}>
+        <Text style={{ color: '#A9A9A9' }}>Back to Login</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('login')}>
           <Text
             style={{
               fontWeight: '900',
@@ -121,7 +78,7 @@ const LoginScreen = ({ navigation }: any) => {
               color: '#4A6CF7',
             }}
           >
-            Sign Up
+            Log In
           </Text>
         </TouchableOpacity>
       </View>
@@ -149,4 +106,4 @@ const style = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default ForgotPasswordScreen;

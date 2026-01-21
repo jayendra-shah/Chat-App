@@ -31,12 +31,6 @@ const HomeScreen = ({ navigation }: any) => {
           gap: 10,
         }}
       >
-        <TouchableOpacity
-          style={{ padding: 3, borderRadius: 25, backgroundColor: 'black' }}
-          onPress={() => navigation.replace('auth')}
-        >
-          <BackIcon />
-        </TouchableOpacity>
         <Text style={{ color: 'white', fontSize: 18, fontWeight: '600' }}>
           <TextInput
             style={{
@@ -85,7 +79,7 @@ const HomeScreen = ({ navigation }: any) => {
               {item.status !== 'Offline' && (
                 <Text
                   style={{
-                    color: item.status === 'Online' ? '#A9A9A9' : '#9112BC',
+                    color: item.status === 'Online' ? '#A9A9A9' : '#4A6CF7',
                     fontSize: 12,
                   }}
                 >
