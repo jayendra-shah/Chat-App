@@ -3,24 +3,20 @@ import {
   Pressable,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
 import { useState } from 'react';
 import auth from '@react-native-firebase/auth';
-import {
-  CloseEyeIcon,
-  MailIcon,
-  OpenEyeIcon,
-  PasswordIcon,
-} from '../../uiAssets/icons';
 import { AuthLayout } from '../../uiAssets/layouts';
+import {
+  EmailTextInput,
+  PasswordTextInput,
+} from '../../Components/ValidatedTextInput';
 
 const LoginScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [eyeOn, setEyeOn] = useState(false);
 
   const handleLogin = async () => {
     if (!email || !password) {
@@ -49,30 +45,14 @@ const LoginScreen = ({ navigation }: any) => {
         Let’s Chat
       </Text>
       <View style={{ width: '92%', gap: 16 }}>
-        <View style={style.textInputBox}>
-          <MailIcon />
-          <TextInput
-            style={style.textInput}
-            placeholder="Enter your email"
-            placeholderTextColor="#9A9A9D"
-            onChangeText={setEmail}
-          />
-        </View>
+        <EmailTextInput value={email} onChangeText={setEmail} />
+
         <View>
-          <View style={style.textInputBox}>
-            <PasswordIcon />
-            <TextInput
-              style={style.textInput}
-              placeholder="Enter your password"
-              placeholderTextColor="#9A9A9D"
-              onChangeText={setPassword}
-              secureTextEntry={eyeOn}
-            />
-            <Pressable onPress={() => setEyeOn(!eyeOn)}>
-              {eyeOn ? <CloseEyeIcon /> : <OpenEyeIcon />}
-            </Pressable>
-          </View>
-          <Pressable style={{ marginTop: 4 }} onPress={() => navigation.navigate('forgotPassword')}>
+          <PasswordTextInput onChangeText={setPassword} value={password} />
+          <Pressable
+            style={{ marginTop: 4 }}
+            onPress={() => navigation.navigate('forgotPassword')}
+          >
             <Text
               style={{
                 textAlign: 'right',

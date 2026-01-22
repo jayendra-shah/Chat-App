@@ -10,6 +10,7 @@ import { MailIcon } from '../../uiAssets/icons';
 import { AuthLayout } from '../../uiAssets/layouts';
 import auth from '@react-native-firebase/auth';
 import { useState } from 'react';
+import { EmailTextInput } from '../../Components/ValidatedTextInput';
 
 const ForgotPasswordScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState('');
@@ -23,7 +24,7 @@ const ForgotPasswordScreen = ({ navigation }: any) => {
     try {
       await auth().sendPasswordResetEmail(email);
       Alert.alert('Success', 'Password reset email has been sent');
-      navigation.navigate('login')
+      navigation.navigate('login');
     } catch (error: any) {
       Alert.alert('Error', error.message);
     }
@@ -42,15 +43,7 @@ const ForgotPasswordScreen = ({ navigation }: any) => {
         Reset Password
       </Text>
       <View style={{ width: '92%', gap: 16 }}>
-        <View style={style.textInputBox}>
-          <MailIcon />
-          <TextInput
-            style={style.textInput}
-            placeholder="Enter your email"
-            placeholderTextColor="#9A9A9D"
-            onChangeText={setEmail}
-          />
-        </View>
+        <EmailTextInput value={email} onChangeText={setEmail} />
       </View>
 
       <TouchableOpacity

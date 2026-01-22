@@ -1,6 +1,5 @@
 import {
   Alert,
-  Pressable,
   StyleSheet,
   Text,
   TextInput,
@@ -11,19 +10,17 @@ import { useState } from 'react';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import { AuthLayout } from '../../uiAssets/layouts';
+import { UserIcon } from '../../uiAssets/icons';
 import {
-  CloseEyeIcon,
-  MailIcon,
-  OpenEyeIcon,
-  PasswordIcon,
-  UserIcon,
-} from '../../uiAssets/icons';
+  EmailTextInput,
+  PasswordTextInput,
+} from '../../Components/ValidatedTextInput';
 
 const SignupScreen = ({ navigation }: any) => {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [eyeOn, setEyeOn] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleSignup = async () => {
     if (!fullName || !email || !password) {
@@ -77,38 +74,19 @@ const SignupScreen = ({ navigation }: any) => {
             onChangeText={setFullName}
           />
         </View>
-        <View style={style.textInputBox}>
-          <MailIcon />
-          <TextInput
-            style={style.textInput}
-            placeholder="Enter your email"
-            placeholderTextColor="#A9A9A9"
-            onChangeText={setEmail}
-          />
-        </View>
-        <View style={style.textInputBox}>
-          <PasswordIcon />
-          <TextInput
-            style={style.textInput}
-            placeholder="Enter your password"
-            placeholderTextColor="#A9A9A9"
-            onChangeText={setPassword}
-            secureTextEntry={eyeOn}
-          />
-          <Pressable onPress={() => setEyeOn(!eyeOn)}>
-            {eyeOn ? <CloseEyeIcon /> : <OpenEyeIcon />}
-          </Pressable>
-        </View>
-        <View style={style.textInputBox}>
-          <PasswordIcon />
-          <TextInput
-            style={style.textInput}
-            placeholder="Confirm your password"
-            placeholderTextColor="#A9A9A9"
-            onChangeText={setPassword}
-            secureTextEntry
-          />
-        </View>
+        <EmailTextInput value={email} onChangeText={setEmail} />
+        <PasswordTextInput
+          value={password}
+          onChangeText={setPassword}
+          placeholder="Enter password"
+        />
+        <PasswordTextInput
+          value={confirmPassword}
+          onChangeText={setConfirmPassword}
+          placeholder="Confirm password"
+          isConfirm
+          compareWith={password}
+        />
       </View>
       <TouchableOpacity
         style={{
